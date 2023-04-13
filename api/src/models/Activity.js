@@ -2,9 +2,8 @@ const { DataTypes } = require('sequelize');
 
 
 module.exports = (sequelize) => {
-
+// defino el modelo:
     sequelize.define('Activity', {
-
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -18,16 +17,13 @@ module.exports = (sequelize) => {
         },
 
         difficulty: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                min: 1,
-                max: 5,
-            }
+            type: DataTypes.ENUM("1", "2" , "3" , "4" , "5"),
+            allowNull: false
         },
 
         duration: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.TIME,
+            allowNull: false
         },
 
         season: {
