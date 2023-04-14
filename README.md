@@ -109,7 +109,7 @@ La idea de este proyecto es construir una aplicación web a partir de la API [**
 
 Deberás crear dos modelos para tu base de datos. Una será para los países y la otra será para las actividades turísticas (pueden llevar el nombre que tu quieras). La relación entre ambos modelos debe ser de muchos a muchos. A continuación te dejamos las propiedades que debe tener cada modelo. Aquellas marcadas con un asterísco son obligatorias.
 
-**📍 MODELO 1 | Country**
+**📍 MODELO 1 | Countries**
 
 -  ID (Código de tres letras). \*
 -  Nombre. \*
