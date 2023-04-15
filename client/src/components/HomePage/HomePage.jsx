@@ -1,7 +1,12 @@
 import React from "react";
 import Nav from "../Nav/Nav";
+import Country from "../Countries/Country";
 
 function HomePage() {
+
+
+
+
     return(
         <div>
             <div>
@@ -9,6 +14,7 @@ function HomePage() {
             </div>
             <div>
                 <h2>PAÍSES:</h2>
+                <Country/>
             </div>
 
         </div>
