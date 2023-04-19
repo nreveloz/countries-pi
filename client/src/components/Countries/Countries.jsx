@@ -1,17 +1,93 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Country from "./Country";
 import style from "./Countries.module.css";
+import {useSelector} from "react-redux";
 
 
-function Countries({countries}) {
+function Countries() {
+
+    const countries = useSelector((state) => state.countries)
+
+    const [ countriesPerPage, setCountriesPerPage ] = useState(10);
+    const [ currentPage, setCurrentPage ] = useState(0);
+    const  [ pageNumberLimit, setPageNumberLimit ] = useState(5);
+    const  [ maxPageNumber, setMaxPageNumber ] = useState(5);
+    const  [ minPageNumber, setMinPageNumber ] = useState(0);
+
+    const indexOfLastPage = currentPage * countriesPerPage;
+    const indexOfFirstPage = indexOfLastPage - countriesPerPage;
+    const currentCountries = countries.slice(indexOfFirstPage, indexOfLastPage)
+
+    const pages = [];
+    fillPages()
+
+    function fillPages() {
+        for( let i = 1; i <= Math.ceil(countries.length/countriesPerPage); i++ ){
+            pages.push(i);
+        }
+    }
+
+    useEffect( () => {
+        fillPages()
+    }, [countries]);
+
+
+    const onPageChange = (event) => {
+        setCurrentPage(Number(event.target.id));
+    }
+
+    const renderPageNumbers = pages.map( (number) => {
+        if( number <= maxPageNumber && number > minPageNumber) {
+            return(
+                <li key={number}
+                    id={number}
+                    onClick={onPageChange}
+                    style={ currentPage === number ?  { background: "black", color : "white"} : { background: "white", color:" black"} }
+                    //className={currentPage === number ? "active" : "inactive" }
+                >
+                    {number}
+                </li>
+            )
+        }
+        else {
+            return null
+        }
+
+    })
+
+    const onPrevPage = () => {
+        setCurrentPage(currentPage - 1);
+
+        if( (currentPage - 1) % pageNumberLimit === 0 ){
+            setMaxPageNumber(maxPageNumber - pageNumberLimit);
+            setMinPageNumber( minPageNumber - pageNumberLimit);
+        }
+    }
+
+    const onNextPage = () => {
+        setCurrentPage(currentPage + 1);
+        if( currentPage + 1 > maxPageNumber ){
+            setMaxPageNumber(maxPageNumber + pageNumberLimit);
+            setMinPageNumber( minPageNumber + pageNumberLimit);
+        }
+    }
 
     return(
         <div>
+            <ul className={style.pageNumbers} >
+                <button className={style.pageButton} onClick={onPrevPage} disabled={ currentPage === pages[0] }>
+                    Prev
+                </button>
+                {renderPageNumbers}
+                <button className={style.pageButton} onClick={onNextPage} disabled={ currentPage === pages[pages.length - 1] }>
+                    Next
+                </button>
+            </ul>
             <h2 className={style.countriesH2}>PAÍSES</h2>
             <br/>
             <div className={style.countriesDiv}>
                 {
-                    countries?.map(({ id, flag_image, name, continent, population, capital_city, region, subregion, area }) => {
+                    currentCountries?.map(({ id, flag_image, name, continent, population, capital_city, region, subregion, area }) => {
                         return <Country
                             key={id}
                             id={id}
