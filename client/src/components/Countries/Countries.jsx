@@ -9,7 +9,7 @@ function Countries() {
     const countries = useSelector((state) => state.countries)
 
     const [ countriesPerPage, setCountriesPerPage ] = useState(10);
-    const [ currentPage, setCurrentPage ] = useState(0);
+    const [ currentPage, setCurrentPage ] = useState(1);
     const  [ pageNumberLimit, setPageNumberLimit ] = useState(5);
     const  [ maxPageNumber, setMaxPageNumber ] = useState(5);
     const  [ minPageNumber, setMinPageNumber ] = useState(0);
@@ -29,6 +29,7 @@ function Countries() {
 
     useEffect( () => {
         fillPages()
+        setCurrentPage(1)
     }, [countries]);
 
 
@@ -43,7 +44,6 @@ function Countries() {
                     id={number}
                     onClick={onPageChange}
                     style={ currentPage === number ?  { background: "black", color : "white"} : { background: "white", color:" black"} }
-                    //className={currentPage === number ? "active" : "inactive" }
                 >
                     {number}
                 </li>

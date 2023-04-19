@@ -9,7 +9,7 @@ function HomePage() {
     const dispatch = useDispatch();
 
     useEffect( () => {
-        dispatch(getCountries()).then(response => console.log("countries loaded : ", response.data))
+        dispatch(getCountries())
     }, [dispatch]);
 
     return(

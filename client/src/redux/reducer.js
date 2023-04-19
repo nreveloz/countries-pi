@@ -1,4 +1,4 @@
-import {GET_COUNTRIES, GET_COUNTRIES_BY_SEARCH,} from "./actions-types";
+import {GET_COUNTRIES, GET_COUNTRIES_BY_SEARCH, POST_ACTIVITIES,} from "./actions-types";
 
 
 let initialState = {
@@ -22,6 +22,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 countries: action.payload,
             }
+
+        case POST_ACTIVITIES:
+            return {
+
+            }
+
+
+
         default:
             return { ...state }
     }

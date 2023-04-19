@@ -33,3 +33,17 @@ export const getCountriesBySearch = (name) =>{
         }
     }
 }
+
+export const createActivity = (activity) => {
+    return async function () {
+        try {
+            const newActivity = await axios.post(
+                'http://localhost:3001/activities',
+                activity
+            )
+        }
+        catch (error){
+            console.log(error);
+        }
+    }
+}
