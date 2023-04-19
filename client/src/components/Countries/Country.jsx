@@ -5,7 +5,7 @@ import style from "./Country.module.css";
 
 const Country = ({ id, flag_image, name, continent, population }) => {
     return (
-        <div className={style.contenedor}>
+        <div className={style.countryContainer}>
             <Link to={`/countries/${id}`}>
                 <div>
                     <img src={ flag_image } alt={name} />

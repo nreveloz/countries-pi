@@ -1,0 +1,25 @@
+.detailCountryContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 50px;
+    width: 85vw;
+    margin: 0;
+
+}
+
+.imageDiv {
+    justify-content: center;
+    padding: 1.5rem;
+    margin-top: 4rem;
+    margin-left: 5rem;
+}
+
+.infoContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    border: 1px solid lightgrey;
+
+}

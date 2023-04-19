@@ -1,7 +1,15 @@
-.contenedor {
+.countryContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 25px;
+    cursor: pointer;
+    transform: translateZ(0);
+    transition: 0.25s ease-out;
+}
 
-    background-color:mintcream;
-    border: 3px solid #7cb038;
-    border-radius: 20rem;
-
+.countryContainer:hover {
+    transform: scale(1.05);
 }

@@ -1,0 +1,16 @@
+.inputSearchBar {
+    width: 70%;
+    font-family: "Helvetica Neue","serif";
+    font-size: small;
+}
+
+.buttonSearchBar {
+    font-family: "Helvetica Neue", "serif";
+    transition: .3s;
+}
+
+.buttonSearchBar:hover {
+    background-color: #262623c9;
+    color: beige;
+    transform: scale(1.1);
+}
