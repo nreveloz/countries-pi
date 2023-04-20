@@ -1,0 +1,28 @@
+.container{
+    font-size: 1.3rem;
+}
+
+.formDiv {
+    align-items: center;
+    height: 70%;
+    padding: 1rem;
+    margin: 1rem 20rem 1rem 20rem;
+    background-color: white;
+    border: 1px solid darkseagreen;
+    border-radius: 2rem;
+}
+.formDiv label{
+    font-size: 1.3rem;
+}
+
+
+.warning {
+    border: solid red 1px;
+    border-radius: 0.2em;
+}
+
+.danger {
+    font-size: 10px;
+    color: red;
+    margin-left: 10em;
+}

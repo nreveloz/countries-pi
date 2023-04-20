@@ -1,0 +1,40 @@
+.landing{
+    background-image: url("../../images/LandingBackground.png");
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position-x: 0;
+    background-position-y: 0;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+.landingDiv{
+    height: 30%;
+    width: 50%;
+    padding: 8rem 20rem 2rem 1rem;
+    font-size: 1.8rem;
+}
+
+
+.landingDiv h2 {
+    font-size: 1.5rem;
+    padding-top: 2rem;
+}
+
+.landingDiv div {
+    font-size: 1.3rem;
+    margin-top: 3rem;
+    margin-left: 9rem;
+    text-align: -webkit-left;
+    width: 70%;
+}
+
+.landingDiv button {
+    font-size: 1.2rem;
+    margin-left: 37.5rem;
+    border-radius: 50rem;
+    border-color: transparent;
+    background-color: transparent;
+    padding: 0.1rem;
+}
