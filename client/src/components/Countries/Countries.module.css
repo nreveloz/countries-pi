@@ -1,7 +1,8 @@
 
 .countriesDiv {
     width: 85vw;
-    margin: 1rem 4rem 4rem 2rem;
+    /*margin: 1rem 4rem 1rem 4rem;*/
+    margin-left: 8rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 50px;
@@ -10,19 +11,20 @@
 .countriesH2 {
     justify-content: center;
     margin-bottom: 3rem;
+    text-shadow: -2px -2px 4px lightslategray;
+    font-size: 2.3rem;
 }
 
 .pageNumbers {
-    list-style: none;
     display: flex;
+    margin: 2rem 46rem 2rem 46rem;
+    list-style: none;
     cursor: pointer;
 }
 
 .pageNumbers li {
     padding: 10px;
     border: 1px solid black;
-
-
 }
 
 .pageNumbers li:active{
@@ -33,6 +35,7 @@
 .pageButton{
     color: black;
     cursor:pointer;
+
 }
 
 .pageButton:hover{

@@ -1,29 +1,45 @@
-.container{
+.container {
     font-size: 1.3rem;
 }
 
+
+.container h2 {
+    margin-top: 4rem;
+    text-shadow: -2px -2px 4px lightslategray;
+    font-size: 2.6rem;
+}
+
 .formDiv {
+    font-family: "Helvetica Neue", "serif";
     align-items: center;
     height: 70%;
     padding: 1rem;
-    margin: 1rem 20rem 1rem 20rem;
+    margin: 0.1rem 30rem 1rem 30rem;
     background-color: white;
-    border: 1px solid darkseagreen;
+    border: none;
     border-radius: 2rem;
+    transform: translateZ(0);
+    transition: 0.25s ease-out;
+    box-shadow: 0px 15px 25px lightgrey;
 }
+
+.formDiv:hover {
+    transform: scale(1.03);
+}
+
 .formDiv label{
     font-size: 1.3rem;
 }
 
 
 .warning {
-    border: solid red 1px;
+    border: solid darkred 1px;
     border-radius: 0.2em;
 }
 
 .danger {
     font-size: 10px;
-    color: red;
+    color: darkred;
     margin-left: 10em;
 }
 
@@ -65,6 +81,7 @@
     min-width: 230px;
     border: 1px solid #ddd;
     z-index: 1;
+    cursor: pointer;
 }
 
 .dropdown-content a {
@@ -77,4 +94,41 @@
 .dropdown-content a:hover {background-color: #f1f1f1}
 
 .show {display:block;}
+
+.renderCountry {
+    border-color: transparent;
+    border-radius: 2rem;
+    transform: translateZ(0);
+    transition: 0.25s ease-out;
+    box-shadow: 0px 15px 25px lightgrey;
+    margin: 1rem 8rem 1.3rem 8rem;
+}
+.renderCountry button{
+    margin: 0rem 0.5rem 0.3rem 1rem;
+    background-color: #c14539;
+    border: none;
+    border-radius: 0.3rem;
+    transition: 0.6ms;
+    cursor: pointer;
+}
+
+.renderCountry button:hover {
+    background-color: gray;
+}
+
+.submitButton {
+    border-radius: 0.9rem;
+    border-color: lightgrey;
+    padding: 0.4rem;
+    margin: 1.5rem 0rem 0.5rem 0rem;
+    cursor: pointer;
+    font-family: "Helvetica Neue", "serif";
+    transition: .3s;
+}
+
+.submitButton:hover {
+    background-color: black;
+    color: beige;
+    transform: scale(1.1);
+}
 

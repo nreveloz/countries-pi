@@ -10,15 +10,13 @@ function Landing() {
                 <h2> Conoce el Mundo y Planifica tus Actividades Turísticas</h2>
                     <div>
                         A través de esta App podrás conocer generalidades de los países alrededor del mundo
-                        y podrás planificar actividades que puedas o pretendas realizar en ellos.
+                        y podrás planificar actividades turísticas en ellos.
                     </div>
-            <br/>
-            <br/>
             <br/>
                 <h3>Henrry PI</h3>
             <div>
                 <button>
-                   <Link to={'/countries'}>Ingresar</Link>
+                   <Link to={'/countries'} style={ {textDecoration: "none"}}>INGRESAR</Link>
                 </button>
             </div>
             </div>

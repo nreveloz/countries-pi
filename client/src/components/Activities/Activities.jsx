@@ -1,13 +1,15 @@
 import React, {useState} from "react";
 import Nav from "../Nav/Nav";
-import axios from "axios";
 import style from "./ActivitiesForm.module.css";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {createActivity, getCountries} from "../../redux/actions";
 
 
 function Activities() {
 
-    const countries = useSelector(state => state.countries)
+    const dispatch = useDispatch();
+
+    const countries = useSelector(state => state.allCountries)
 
     const [input, setInput] = useState({
         name: '',
@@ -34,6 +36,7 @@ function Activities() {
                     ...input,
                     selectedCountries: [...input.selectedCountries, country]
                 })
+                event.target.value = null
             }
         }
     }
@@ -54,41 +57,31 @@ function Activities() {
             [event.target.name]: event.target.value
         })
 
-        // setErrors(validate({
-        //     ...input,
-        //     [event.target.name]: event.target.value
-        // }))
+        setErrors(validate({
+            ...input,
+            [event.target.name]: event.target.value
+        }))
     }
 
     const validate = (input) => {
-        if (!input.name) {
-            errors.name = 'Se requiere llenar un nombre'
-        }
-        ;
-        if (input.name.length < 3) {
-            errors.name = 'requiere mas de 3 carácteres'
-        }
-        if (!input.duration) {
-            errors.duration = 'Se requiere asignar un tiempo'
-        }
-        ;
-        if (!input.difficulty) {
-            errors.difficulty = 'Se requiere seleccionar un campo'
-        }
-        ;
-        if (!input.season) {
-            errors.season = 'Se requiere seleccionar un campo'
-        }
-        ;
-        // if(!input.country){ errors.country = 'Se requiere seleccionar un pais'};
+        let errors ={};
+        if ( input.name.length < 3) { errors.name = 'Requiere nombre con mas de 3 carácteres'};
+        console.log("error.name",errors.name)
+        if (!input.duration) { errors.duration = 'Requiere asignar un tiempo'};
+        console.log("error.duration",errors.duration)
+        if (!input.difficulty) { errors.difficulty = 'Requiere seleccionar un campo'};
+        console.log("error.difficulty",errors.difficulty)
+        if (!input.season) { errors.season = 'Requiere seleccionar un campo'};
+        console.log("error.season",errors.season)
+        console.log( " errores validacion", errors);
         return errors;
     }
 
 
     const handleSubmit = (event) => {
-
         event.preventDefault();
-        if(true){
+
+        if(!Object.values(errors).length && input.selectedCountries.length > 0){
             const apiActivity = {
                 name: input.name,
                 duration: input.duration,
@@ -96,33 +89,28 @@ function Activities() {
                 season: input.season,
                 countryIds: input.selectedCountries.map(country => country.id)
             }
-            console.log("api activity:", apiActivity);
-            axios.post("http://localhost:3001/activities/create-activity", apiActivity)
-                .then(res => alert("Actividad creada con éxito"))
-                .catch(err => alert(err));
-            setInput(
-                {
-                    name:'',
-                    duration:'',
-                    difficulty:'',
-                    season:'',
-                    selectedCountries:[],
 
-                })
-            // setErrors({
-            //             name:'',
-            //             duration:'',
-            //             difficulty:'',
-            //             season:'',
-            //     selectedCountries:[],
-            //
-            //         })
+            dispatch(createActivity(apiActivity))
+                .then(() => alert("Actividad creada con éxito"))
+                .then(() => getCountries())
+            setInput({
+                name:'',
+                duration:'',
+                difficulty:'',
+                season:'',
+                selectedCountries:[],
+            })
+            setErrors({
+                name:'',
+                duration:'',
+                difficulty:'',
+                season:'',
+            })
         }
         else {
-            alert("Debe llenar todos los campos")
+            alert("Debe agregar todos los campos")
         }
     };
-
 
     return (
         <div>
@@ -131,58 +119,66 @@ function Activities() {
             </div>
             <div className={style.container}>
                 <form onSubmit={handleSubmit}>
-                    <h2> - Nueva Actividad - </h2>
+                    <h2>  Nueva Actividad  </h2>
                     <br/>
                     <div className={style.formDiv}>
 
                         <label htmlFor="name" placeholder='Ingrese un nombre'> Nombre: </label>
-                        <input type="text" name="name" value={input.name} onChange={handleChange}/>
-                        {/*{*/}
-                        {/*    errors.name && <p className={style.danger}>{errors.name}</p>*/}
-                        {/*}*/}
+                        <input type="text" name="name" value={input.name} onChange={handleChange}
+                               className={ errors.name && 'warning'}/>
+                        {
+                            errors.name && <p className={style.danger}>{errors.name}</p>
+                        }
                         <br/>
                         <br/>
                         <label htmlFor="duration" placeholder='Ingresa una duración'> Duración: </label>
-                        <input type="time" step="60" id="hours" name="duration" value={input.duration} onChange={handleChange}/>
-                        {/*{*/}
-                        {/*    errors.duration && <p className={style.danger}>{errors.duration}</p>*/}
-                        {/*}*/}
+                        <input type="time" step="60" id="hours" name="duration" value={input.duration} onChange={handleChange}
+                               className={ errors.duration && 'warning'}/>
+                        {
+                            errors.duration && <p className={style.danger}>{errors.duration}</p>
+                        }
 
                         <br/>
                         <br/>
                         <label> Dificultad:</label>
-                        <div>
+                        <div className={ errors.difficulty && 'warning'}>
                             <input type="radio" name="difficulty" value={1} onChange={handleChange}
                                    checked={input.difficulty === "1"}/>1
+                            <label>  </label>
                             <input type="radio" name="difficulty" value={2} onChange={handleChange}
                                    checked={input.difficulty === "2"}/>2
+                            <label> </label>
                             <input type="radio" name="difficulty" value={3} onChange={handleChange}
                                    checked={input.difficulty === "3"}/>3
+                            <label>  </label>
                             <input type="radio" name="difficulty" value={4} onChange={handleChange}
                                    checked={input.difficulty === "4"}/>4
+                            <label>  </label>
                             <input type="radio" name="difficulty" value={5} onChange={handleChange}
                                    checked={input.difficulty === "5"}/>5
-                            {/*{*/}
-                            {/*    errors.difficulty && <p className={style.danger}>{errors.difficulty}</p>*/}
-                            {/*}*/}
+                            {
+                                errors.difficulty && <p className={style.danger}>{errors.difficulty}</p>
+                            }
                         </div>
 
                         <br/>
-                        <label>Temporada:</label>
-                        <div>
-                            <input type="checkbox" name="season" value="Primavera" onChange={handleChange}
+                        <label >Temporada:</label>
+                        <div className={ errors.season && 'warning'}>
+                            <input type="checkbox" className={style.checkboxSeason} name="season" value="Primavera" onChange={handleChange}
                                    checked={input.season === "Primavera"}/> 🌷Primavera
+                            <label> -- </label>
                             <input type="checkbox" name="season" value="Verano" onChange={handleChange}
                                    checked={input.season === "Verano"}/> 🌴 Verano
+                            <label> -- </label>
                             <input type="checkbox" name="season" value="Otoño" onChange={handleChange}
                                    checked={input.season === "Otoño"}/> 🍂 Otoño
+                            <label> -- </label>
                             <input type="checkbox" name="season" value="Invierno" onChange={handleChange}
                                    checked={input.season === "Invierno"}/> ❄️ Invierno
-                            {/*{*/}
-                            {/*    errors.season && <p className={style.danger}>{errors.season}</p>*/}
-                            {/*}*/}
+                            {
+                                errors.season && <p className={style.danger}>{errors.season}</p>
+                            }
                         </div>
-
                         <br/>
                         <label htmlFor="pais"> País:</label>
                         <div>
@@ -195,15 +191,15 @@ function Activities() {
                                     })}
                                 </datalist>
                                 {input.selectedCountries.map((country =>
-                                    <div key={country.id}>
-                                        <label>{country.id} - {country.name}         </label>
+                                    <div key={country.id}   className={style.renderCountry}>
                                         <img src={country.flag_image} width="30px" alt={country.name}/>
+                                        <label> {country.id} - {country.name}</label>
                                         <button id={country.id} onClick={removeFromSelected}>x</button>
                                     </div>))}
                             </div>
                         </div>
                         <br/>
-                        <button type="submit">AGREGAR ACTIVIDAD</button>
+                        <button type="submit" className={style.submitButton}>AGREGAR ACTIVIDAD</button>
                     </div>
                 </form>
             </div>

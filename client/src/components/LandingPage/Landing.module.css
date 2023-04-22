@@ -1,5 +1,5 @@
 .landing{
-    background-image: url("../../images/LandingBackground.png");
+    background-image: url("../../images/landinImage.png");
     background-color: white;
     background-repeat: no-repeat;
     background-position-x: 0;
@@ -14,12 +14,34 @@
     width: 50%;
     padding: 8rem 20rem 2rem 1rem;
     font-size: 1.8rem;
+
 }
 
+.landingDiv h1 {
+    background-color: #17313e;
+    color: #dddddd;
+    /*background-color: #dbdd80;*/
+    width: 60%;
+    font-weight: bold;
+    border-radius: 2rem;
+    margin-left: 12rem;
+    margin-top: 6rem;
+    /*margin-left: 8rem;*/
+    /*margin-top: 3rem;*/
+    box-shadow: 0 0 60px rgba(0,0,0,0.8);
+
+}
+
+.landingDiv h1:hover{
+    transform: scale(1.05);
+
+}
 
 .landingDiv h2 {
     font-size: 1.5rem;
-    padding-top: 2rem;
+    padding-top: 1rem;
+    margin-left: 1rem;
+    /*padding-top: 2rem; no margin*/
 }
 
 .landingDiv div {
@@ -30,11 +52,31 @@
     width: 70%;
 }
 
+.landingDiv h3{
+    font-size: 1.2rem;
+
+}
+
 .landingDiv button {
     font-size: 1.2rem;
-    margin-left: 37.5rem;
-    border-radius: 50rem;
+    font-weight: bold;
+    /*margin-left: 15rem;*/
+    margin-left: 80rem;
+    border-radius: 1.8rem;
+    background-color: whitesmoke;
+    /*background-color: #88c9f9;*/
+    /*        #f05354;*/
     border-color: transparent;
-    background-color: transparent;
-    padding: 0.1rem;
+    padding: 1.3rem;
+    transition: 0.3s;
+    box-shadow: 0 0 70px rgba(0,0,0,2);
+}
+
+.landingDiv button:hover {
+    background-color: #12a1a5;
+    /*background-color: #11A0F1;*/
+    transform: scale(1.05);
+    color: white ;
+    border: 1px solid transparent;
+    box-shadow: 0 0 80px snow;
 }

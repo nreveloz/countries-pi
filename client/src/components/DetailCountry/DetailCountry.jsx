@@ -3,7 +3,6 @@ import {useParams} from "react-router-dom/cjs/react-router-dom";
 import style from "./DetailCountry.module.css";
 import Nav from "../Nav/Nav";
 
-
 function DetailCountry() {
 
     const { id } = useParams();
@@ -47,7 +46,21 @@ function DetailCountry() {
                             <h3> Capital: { country?.capital_city } </h3>
                             <h3> Sub-region: { country?.subregion } </h3>
                             <h3> Área: { country?.area }  </h3>
-                            <h4> Actividades: </h4>
+                        </div>
+                        <div>
+                            <div className={style.activityDiv} >
+                                <h2>Actividades </h2>
+                                { country.Activities.map(activity =>
+                                    <div key = {activity.id} className={style.infoActivitiesDiv}>
+                                        <ul>
+                                            <h3> ⭑ {activity?.name} </h3>
+                                            <h4> Dificultad : {activity?.difficulty} </h4>
+                                            <h4> Duración : {activity?.duration} horas </h4>
+                                            <h4> Temporada : {activity?.season} </h4>
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

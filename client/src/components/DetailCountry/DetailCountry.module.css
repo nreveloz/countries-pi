@@ -1,10 +1,9 @@
 .detailCountryContainer {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 50px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 25px;
     width: 85vw;
     margin: 0;
-
 }
 
 .imageDiv {
@@ -21,5 +20,43 @@
     margin: 0;
     padding: 0;
     border: 1px solid lightgrey;
+    border-radius: 1rem;
+    transform: translateZ(0);
+    transition: 0.25s ease-out;
+    box-shadow: 0px 15px 25px lightgrey;
+    color: black;
+}
 
+.infoContainer h1{
+    font-size: 3rem;
+    font-weight: bold;
+    color: brown;
+}
+
+.activityDiv {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    border-radius: 1rem;
+    transform: translateZ(0);
+    transition: 0.25s ease-out;
+    box-shadow: 0px 15px 25px lightgrey;
+    color: black;
+}
+
+.infoActivitiesDiv {
+    color: darkslateblue;
+    /*background-color: #f3f3fb;*/
+    margin: 1rem 2rem 1rem 2rem ;
+    border-radius: 2rem;
+    transform: translateZ(0);
+    transition: 0.25s ease-out;
+    box-shadow: 1px 5px 15px lightgrey;
+}
+
+.infoActivitiesDiv h3 {
+   font-weight: bold;
+    font-size: 1.5rem;
+    /*color: midnightblue;*/
+    color:navy;
 }

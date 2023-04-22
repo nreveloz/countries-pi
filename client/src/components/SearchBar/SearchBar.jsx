@@ -1,15 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import style from "./SearchBar.module.css";
-import axios from "axios";
 import {useDispatch} from "react-redux";
-import {getCountriesBySearch} from "../../redux/actions";
+import {getCountries, getCountriesBySearch} from "../../redux/actions";
+import {useHistory} from "react-router-dom"
 
 
 
 function SearchBar() {
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const [ input, setInput] = useState("");
 
@@ -20,7 +21,13 @@ function SearchBar() {
     }
 
     const handleSubmit = () => {
-        dispatch(getCountriesBySearch(input));
+        dispatch(getCountriesBySearch(input))
+            .then(() => history.push("/countries", {doNotRefresh : true}));
+    };
+
+    const handleClearFilters = () => {
+        console.log("limpiando paises")
+        dispatch(getCountries()).then((r) => console.log(r))
     };
 
     // function handleSubmit(){
@@ -53,8 +60,12 @@ function SearchBar() {
             <button type='submit' className={style.buttonSearchBar} onClick={handleSubmit}>
                     Buscar
             </button>
+            <button type='submit' className={style.buttonSearchBar} onClick={handleClearFilters}>
+                Limpiar Búsqueda
+            </button>
         </div>
     );
+
 };
 
 export default SearchBar;

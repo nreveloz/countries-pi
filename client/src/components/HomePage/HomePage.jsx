@@ -1,21 +1,38 @@
 import React, { useState, useEffect } from "react";
 import Nav from "../Nav/Nav";
 import Countries from "../Countries/Countries";
-import {useDispatch} from "react-redux";
-import {getCountries} from "../../redux/actions";
+import {useDispatch, useSelector} from "react-redux";
+import {getAllActivities, getCountries} from "../../redux/actions";
+import ContinentFilter from "../Filters/ContinentFilter";
+import OrderByAlphabet from "../Filters/OrederByAlphabet";
+import OrderByPopulation from "../Filters/OrderByPopulation";
+import FilterByActivity from "../Filters/FilterByActivity";
 
 function HomePage() {
 
     const dispatch = useDispatch();
+    const countries = useSelector(state => state.countries)
 
     useEffect( () => {
-        dispatch(getCountries())
+        if(!countries.length) {
+            dispatch(getCountries()).then((res) => console.log("COL : ", res.payload.filter(country => country.id === "COL")))
+
+        }
+        dispatch(getAllActivities())
     }, [dispatch]);
 
     return(
         <div>
             <div>
               <Nav/>
+            </div>
+            <div >
+                <OrderByAlphabet/>
+                <OrderByPopulation/>
+            </div>
+            <div >
+                <ContinentFilter/>
+                <FilterByActivity/>
             </div>
             <div>
                 <Countries/>

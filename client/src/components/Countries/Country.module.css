@@ -1,7 +1,8 @@
 .countryContainer {
     display: flex;
     flex-direction: column;
-    background-color: rgb(238, 238, 238);
+    /*background-color: #f3f3fb;*/
+            /*rgb(238, 238, 238);*/
     border: none;
     border-radius: 20px;
     padding: 25px;
@@ -10,9 +11,13 @@
     transition: 0.25s ease-out;
     box-shadow: 0px 15px 25px lightgrey;
     color: black;
-
 }
 
 .countryContainer:hover {
     transform: scale(1.05);
+}
+
+.countryContainer img {
+    max-width: 200px;
+
 }
