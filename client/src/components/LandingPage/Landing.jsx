@@ -1,26 +1,24 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import style from "./Landing.module.css";
 
 function Landing() {
     return (
-        <div className="landing">
-            <h1>Countries App</h1>
+        <div className={style.landing} >
+            <div className={style.landingDiv}>
+            <h1 >Countries App</h1>
                 <h2> Conoce el Mundo y Planifica tus Actividades Turísticas</h2>
                     <div>
-                        A través de esta App podrás conocer generalidades de los países al rededor del mundo
-                        y podrás planificar diferentes actividades turísticas que pretendas realizar en tus
-                        futuros destinos.
+                        A través de esta App podrás conocer generalidades de los países alrededor del mundo
+                        y podrás planificar actividades turísticas en ellos.
                     </div>
             <br/>
-            <br/>
-            <br/>
                 <h3>Henrry PI</h3>
-            <br/>
-            <br/>
             <div>
                 <button>
-                   <Link to={'/countries'}>Ingresar</Link>
+                   <Link to={'/countries'} style={ {textDecoration: "none"}}>INGRESAR</Link>
                 </button>
+            </div>
             </div>
         </div>
     )

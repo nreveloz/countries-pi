@@ -1,0 +1,35 @@
+.navDiv {
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../images/navImage3.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    /*background-color:rgb(18,104,175);*/
+    /*#028090;*/
+    /*#2A413B;*/
+    width: auto;
+    padding: 0.5rem;
+}
+
+.navNav {
+    display: grid;
+    grid-template-columns: 25% 25% 10% 50%;
+    justify-content: center;
+    align-items: center;
+    text-align: -webkit-center;
+    margin: 0.6rem;
+    padding-left: 5rem;
+    font-size: 0.9rem;
+    font-family: "Helvetica Neue", "serif";
+}
+
+.navLink {
+    text-Decoration: none;
+    color: white;
+    transition: 1s;
+}
+
+.navLink:hover{
+    transform: scale(1.2);
+    font-weight: bold;
+}

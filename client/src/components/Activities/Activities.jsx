@@ -1,75 +1,206 @@
-import React from "react";
+import React, {useState} from "react";
 import Nav from "../Nav/Nav";
+import style from "./ActivitiesForm.module.css";
+import {useDispatch, useSelector} from "react-redux";
+import {createActivity, getCountries} from "../../redux/actions";
 
 
 function Activities() {
 
-    // Activitiesconst [ userData, setUserData ] = useState({
-    //     name:'',
-    //     duration:'',
-    //     dificulty:'',
-    //     season:'',
-    //     country:[],
-    // })
+    const dispatch = useDispatch();
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    // }
+    const countries = useSelector(state => state.allCountries)
 
-    return(
+    const [input, setInput] = useState({
+        name: '',
+        duration: '',
+        difficulty: '',
+        season: '',
+        selectedCountries: [],
+    })
 
+    const [errors, setErrors] = useState({
+        name: '',
+        duration: '',
+        difficulty: '',
+        season: '',
+        selectedCountries: [],
+    })
+
+    function onCountrySelect(event) {
+        const countryId = event.target.value
+        if (countryId && !input.selectedCountries.find(country => country.id === countryId)) {
+            const country = countries.find(country => country.id === countryId)
+            if (country) {
+                setInput({
+                    ...input,
+                    selectedCountries: [...input.selectedCountries, country]
+                })
+                event.target.value = null
+            }
+        }
+    }
+
+    function removeFromSelected(event) {
+        event.preventDefault();
+        const countryId = event.target.id
+        setInput({
+            ...input,
+            selectedCountries: input.selectedCountries.filter(country => country.id !== countryId )
+        })
+    }
+
+    const handleChange = (event) => {
+        console.log(event.target.value)
+        setInput({
+            ...input,
+            [event.target.name]: event.target.value
+        })
+
+        setErrors(validate({
+            ...input,
+            [event.target.name]: event.target.value
+        }))
+    }
+
+    const validate = (input) => {
+        let errors ={};
+        if ( input.name.length < 3) { errors.name = 'Requiere nombre con mas de 3 carácteres'};
+        console.log("error.name",errors.name)
+        if (!input.duration) { errors.duration = 'Requiere asignar un tiempo'};
+        console.log("error.duration",errors.duration)
+        if (!input.difficulty) { errors.difficulty = 'Requiere seleccionar un campo'};
+        console.log("error.difficulty",errors.difficulty)
+        if (!input.season) { errors.season = 'Requiere seleccionar un campo'};
+        console.log("error.season",errors.season)
+        console.log( " errores validacion", errors);
+        return errors;
+    }
+
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if(!Object.values(errors).length && input.selectedCountries.length > 0){
+            const apiActivity = {
+                name: input.name,
+                duration: input.duration,
+                difficulty: input.difficulty,
+                season: input.season,
+                countryIds: input.selectedCountries.map(country => country.id)
+            }
+
+            dispatch(createActivity(apiActivity))
+                .then(() => alert("Actividad creada con éxito"))
+                .then(() => getCountries())
+            setInput({
+                name:'',
+                duration:'',
+                difficulty:'',
+                season:'',
+                selectedCountries:[],
+            })
+            setErrors({
+                name:'',
+                duration:'',
+                difficulty:'',
+                season:'',
+            })
+        }
+        else {
+            alert("Debe agregar todos los campos")
+        }
+    };
+
+    return (
         <div>
             <div>
-               <Nav/>
+                <Nav/>
             </div>
-            <div>
-                <form onSubmit={ handleSubmit }> {/*onSubmit={ handleSubmit }*/}
-
-                    <h2> Crea Nueva Actividad: </h2>
+            <div className={style.container}>
+                <form onSubmit={handleSubmit}>
+                    <h2>  Nueva Actividad  </h2>
                     <br/>
+                    <div className={style.formDiv}>
 
-                    <label htmlFor="name"  placeholder='Ingresa un nombre'>Nombre:</label>
-                    <input type="text" name="name"  />  {/*value={userData.name*/}
+                        <label htmlFor="name" placeholder='Ingrese un nombre'> Nombre: </label>
+                        <input type="text" name="name" value={input.name} onChange={handleChange}
+                               className={ errors.name && 'warning'}/>
+                        {
+                            errors.name && <p className={style.danger}>{errors.name}</p>
+                        }
+                        <br/>
+                        <br/>
+                        <label htmlFor="duration" placeholder='Ingresa una duración'> Duración: </label>
+                        <input type="time" step="60" id="hours" name="duration" value={input.duration} onChange={handleChange}
+                               className={ errors.duration && 'warning'}/>
+                        {
+                            errors.duration && <p className={style.danger}>{errors.duration}</p>
+                        }
 
-                    <br/>
-                    <label htmlFor="duration" placeholder='Ingresa una duración'>Duración:</label>
-                    <input type="time" id="hours" name="duration"  />  {/*value={userData.name*/}
+                        <br/>
+                        <br/>
+                        <label> Dificultad:</label>
+                        <div className={ errors.difficulty && 'warning'}>
+                            <input type="radio" name="difficulty" value={1} onChange={handleChange}
+                                   checked={input.difficulty === "1"}/>1
+                            <label>  </label>
+                            <input type="radio" name="difficulty" value={2} onChange={handleChange}
+                                   checked={input.difficulty === "2"}/>2
+                            <label> </label>
+                            <input type="radio" name="difficulty" value={3} onChange={handleChange}
+                                   checked={input.difficulty === "3"}/>3
+                            <label>  </label>
+                            <input type="radio" name="difficulty" value={4} onChange={handleChange}
+                                   checked={input.difficulty === "4"}/>4
+                            <label>  </label>
+                            <input type="radio" name="difficulty" value={5} onChange={handleChange}
+                                   checked={input.difficulty === "5"}/>5
+                            {
+                                errors.difficulty && <p className={style.danger}>{errors.difficulty}</p>
+                            }
+                        </div>
 
-                    {/*value={userData.duration}*/}
-
-                    <br/>
-                    <label htmlFor="dificulty" placeholder='Seleccione una dificultad:'>Dificultad:</label>*
-                    <input type="radio" name="1"  >1 </input>
-                    <input type="radio" name="2"  >2 </input>
-                    <input type="radio" name="3"  >3 </input>
-                    <input type="radio" name="4"  >4 </input>
-                    <input type="radio" name="5"  >5 </input>
-
-
-                    <br/>
-                    <label htmlFor="season" placeholder='Seleccione la temporada'>Temporada:</label>
-                    <input type="checkbox" name="season" value="Primavera"> 🌷Primavera </input>
-                    <input type="checkbox" name="season" value="Verano"> 🌴 Verano </input>
-                    <input type="checkbox" name="season" value="Otoño"> 🍂 Otoño </input>
-                    <input type="checkbox" name="season" value="Invierno"> ❄️ Invierno </input>
-
-                    {/*<br/>*/}
-                    {/*<label htmlFor="season" placeholder='Seleccione la temporada'>Temporada:</label>*/}
-                    {/*<select name="temporada" id="temporada" value={userData.season}>*/}
-                    {/*    <option value="seleccionar">Seleccionar...</option>*/}
-                    {/*    <option value="invierno">Invierno</option>*/}
-                    {/*    <option value="otonio">Otoño</option>*/}
-                    {/*    <option value="primavera">Primavera</option>*/}
-                    {/*    <option value="verano">Verano</option>*/}
-                    {/*</select>*/}
-
-
-                    <br/>
-                    <label htmlFor="pais" placeholder='Seleccione el paÍs'> País:</label>
-
-
-                    <br/>
-                    <button type="submit">AGREGAR ACTIVIDAD</button>
+                        <br/>
+                        <label >Temporada:</label>
+                        <div className={ errors.season && 'warning'}>
+                            <input type="checkbox" className={style.checkboxSeason} name="season" value="Primavera" onChange={handleChange}
+                                   checked={input.season === "Primavera"}/> 🌷Primavera
+                            <label> -- </label>
+                            <input type="checkbox" name="season" value="Verano" onChange={handleChange}
+                                   checked={input.season === "Verano"}/> 🌴 Verano
+                            <label> -- </label>
+                            <input type="checkbox" name="season" value="Otoño" onChange={handleChange}
+                                   checked={input.season === "Otoño"}/> 🍂 Otoño
+                            <label> -- </label>
+                            <input type="checkbox" name="season" value="Invierno" onChange={handleChange}
+                                   checked={input.season === "Invierno"}/> ❄️ Invierno
+                            {
+                                errors.season && <p className={style.danger}>{errors.season}</p>
+                            }
+                        </div>
+                        <br/>
+                        <label htmlFor="pais"> País:</label>
+                        <div>
+                            <div>
+                                <input autoComplete="off" list="countries" onInput={onCountrySelect}/>
+                                <datalist id="countries">
+                                    {countries.map(country => {
+                                        return (<option key={country.id}
+                                                        value={country.id}>{country.name}</option>)
+                                    })}
+                                </datalist>
+                                {input.selectedCountries.map((country =>
+                                    <div key={country.id}   className={style.renderCountry}>
+                                        <img src={country.flag_image} width="30px" alt={country.name}/>
+                                        <label> {country.id} - {country.name}</label>
+                                        <button id={country.id} onClick={removeFromSelected}>x</button>
+                                    </div>))}
+                            </div>
+                        </div>
+                        <br/>
+                        <button type="submit" className={style.submitButton}>AGREGAR ACTIVIDAD</button>
+                    </div>
                 </form>
             </div>
         </div>

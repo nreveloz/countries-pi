@@ -1,0 +1,13 @@
+.orderByDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    row-gap: 0.5rem;
+    margin: 1rem;
+    font-family: "Helvetica Neue", "serif";
+}
+
+
+
+
+
+

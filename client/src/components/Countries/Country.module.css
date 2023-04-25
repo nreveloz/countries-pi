@@ -1,7 +1,24 @@
-.contenedor {
+.countryContainer {
+    display: flex;
+    flex-direction: column;
+    /*background-color: #f3f3fb;*/
+            /*rgb(238, 238, 238);*/
+    border: none;
+    border-radius: 20px;
+    padding: 25px;
+    cursor: pointer;
+    transform: translateZ(0);
+    transition: 0.25s ease-out;
+    box-shadow: 0px 15px 25px lightgrey;
+    color: black;
+}
 
-    background-color:mintcream;
-    border: 3px solid #7cb038;
-    border-radius: 20rem;
+.countryContainer:hover {
+    transform: scale(1.05);
+    background: linear-gradient(to bottom right, #44bb81,#22a99a);
+}
+
+.countryContainer img {
+    max-width: 200px;
 
 }
