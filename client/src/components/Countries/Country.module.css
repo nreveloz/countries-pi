@@ -15,6 +15,7 @@
 
 .countryContainer:hover {
     transform: scale(1.05);
+    background: linear-gradient(to bottom right, #44bb81,#22a99a);
 }
 
 .countryContainer img {

@@ -16,7 +16,7 @@ function FilterByActivity() {
 
     return(
         <div>
-            < select defaultValue={"DEFAULT"} onChange={handleOrder} >
+            < select defaultValue={"DEFAULT"} onChange={handleOrder}   style={{border: "3px solid #44bb81", borderRadius: "0.5rem", padding: "0.5rem"}}>
                 <option value="DEFAULT" disabled="disabled">Filtrar por Actividad</option>
                 {
                     activities.map(activity =>

@@ -7,6 +7,7 @@ import ContinentFilter from "../Filters/ContinentFilter";
 import OrderByAlphabet from "../Filters/OrederByAlphabet";
 import OrderByPopulation from "../Filters/OrderByPopulation";
 import FilterByActivity from "../Filters/FilterByActivity";
+import style from "./Home.module.css";
 
 function HomePage() {
 
@@ -26,11 +27,9 @@ function HomePage() {
             <div>
               <Nav/>
             </div>
-            <div >
+            <div className={style.orderByDiv}>
                 <OrderByAlphabet/>
                 <OrderByPopulation/>
-            </div>
-            <div >
                 <ContinentFilter/>
                 <FilterByActivity/>
             </div>

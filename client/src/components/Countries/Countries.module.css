@@ -3,6 +3,7 @@
     width: 85vw;
     /*margin: 1rem 4rem 1rem 4rem;*/
     margin-left: 8rem;
+    margin-bottom: 3rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 50px;
@@ -24,11 +25,11 @@
 
 .pageNumbers li {
     padding: 10px;
-    border: 1px solid black;
+    border: 1px solid dimgrey;
 }
 
 .pageNumbers li:active{
-    background-color: grey;
+    background-colord-color: grey;
     color: black;
 }
 

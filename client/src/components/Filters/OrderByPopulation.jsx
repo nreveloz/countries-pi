@@ -16,7 +16,7 @@ function OrderByPopulation() {
 
     return(
         <div>
-            < select defaultValue={"DEFAULT"} onChange={handleOrder} >
+            < select defaultValue={"DEFAULT"} onChange={handleOrder}   style={{border: "3px solid #44bb81", borderRadius: "0.5rem", padding: "0.5rem"}}>
                 <option value="DEFAULT" disabled="disabled">Ordenar por Población</option>
                 <option value="Ascendent"> Menor Población </option>
                 <option value="Descendent"> Mayor Población </option>

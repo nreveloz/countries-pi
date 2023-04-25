@@ -1,31 +1,13 @@
-.pageNumbers {
-    list-style: none;
-    display: flex;
-    cursor: pointer;
+.orderByDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    row-gap: 0.5rem;
+    margin: 1rem;
+    font-family: "Helvetica Neue", "serif";
 }
 
-.pageNumbers li {
-    padding: 10px;
-    border: 1px solid black;
 
 
-}
-
-.pageNumbers li:active{
-    background-color: grey;
-    color: black;
-}
-
-.pageButton{
-    color: black;
-    cursor:pointer;
-}
-
-.pageButton:hover{
-    background-color: darkgrey ;
-    color: black;
-    border-color: grey;
-}
 
 
 

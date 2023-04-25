@@ -43,7 +43,7 @@ function Countries() {
                 <li key={number}
                     id={number}
                     onClick={onPageChange}
-                    style={currentPage === number ? {background: "grey", color: "white"} : {
+                    style={currentPage === number ? {background: "grey", color: "black"} : {
                         background: "white",
                         color: " black"
                     }}

@@ -13,11 +13,12 @@
 
 .navNav {
     display: grid;
-    grid-template-columns: 20% 20% 20% 50%;
+    grid-template-columns: 25% 25% 10% 50%;
     justify-content: center;
     align-items: center;
     text-align: -webkit-center;
-    margin: 0.5rem;
+    margin: 0.6rem;
+    padding-left: 5rem;
     font-size: 0.9rem;
     font-family: "Helvetica Neue", "serif";
 }
