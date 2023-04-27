@@ -14,10 +14,9 @@ function HomePage() {
     const dispatch = useDispatch();
     const countries = useSelector(state => state.countries)
 
-    useEffect( () => {
+    useEffect( () => {    //--> cuando se monta el componente de despacha getCountries
         if(!countries.length) {
-            dispatch(getCountries()).then((res) => console.log("COL : ", res.payload.filter(country => country.id === "COL")))
-
+            dispatch(getCountries())
         }
         dispatch(getAllActivities())
     }, [dispatch]);

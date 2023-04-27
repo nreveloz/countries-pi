@@ -2,29 +2,14 @@ const { Router } = require('express');
 const getAllCountries = require('../controllers/getAllCountries');
 const getCountyDetailById = require('../controllers/getCountyDetailById');
 const getCountriesByNameLike = require('../controllers/getCountriesByNameLike');
-const { Activity, Country } = require("../db");
 
 const countryRouter = Router();
 
-// GET | /countries
-// Obtiene un arreglo de objetos, donde cada objeto es un país con toda su información.
-/*
-countryRouter.get("/", async (req, res) => {
-    try {
-        const countries = await getAllCountries();
-        res.status(200).json(countries);
-    }
-    catch (error) {
-        res.status(500).json({ err : error.message });
-    }
-});*/
-
 
 // 📍 GET | /countries/:idPais
-// Esta ruta obtiene el detalle de un país específico. Es decir que devuelve un objeto con la información pedida en el detalle de un país.
-//     El país es recibido por parámetro (ID de tres letras del país).
+// Esta ruta obtiene el detalle de un país específico.
+// El país es recibido por parámetro (ID de tres letras del país).
 // Tiene que incluir los datos de las actividades turísticas asociadas a este país.
-
 
 countryRouter.get("/:countryId", async (req, res) =>{
     try {

@@ -3,11 +3,11 @@ import thunkMiddleware from "redux-thunk"; //--> mediador para asyncronia
 import reducer from "./reducer";
 
 
-const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; //--> para conectar con dev tools
 
 const store = createStore(
     reducer,
-    composeEnhancer(applyMiddleware(thunkMiddleware))
+    composeEnhancer(applyMiddleware(thunkMiddleware)) //--> para peticiones asincronas al servidor
 );
 
 export default store;
