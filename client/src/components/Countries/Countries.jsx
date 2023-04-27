@@ -20,16 +20,18 @@ function Countries() {
 
     const pages = [];
     fillPages()
-
     function fillPages() {
         for (let i = 1; i <= Math.ceil(countries.length / countriesPerPage); i++) {
             pages.push(i);
         }
+        console.log("pages : ", pages)
     }
 
     useEffect(() => {
         fillPages()
         setCurrentPage(1)
+        setMaxPageNumber(5)
+        setMinPageNumber(0)
     }, [countries]);
 
 
@@ -38,7 +40,7 @@ function Countries() {
     }
 
     const renderPageNumbers = pages.map((number) => {
-        if (number <= maxPageNumber && number > minPageNumber) {
+        if ((number <= maxPageNumber && number > minPageNumber) || pages.length === 1) {
             return (
                 <li key={number}
                     id={number}

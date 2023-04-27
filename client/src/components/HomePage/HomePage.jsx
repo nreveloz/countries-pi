@@ -16,8 +16,7 @@ function HomePage() {
 
     useEffect( () => {
         if(!countries.length) {
-            dispatch(getCountries()).then((res) => console.log("COL : ", res.payload.filter(country => country.id === "COL")))
-
+            dispatch(getCountries())
         }
         dispatch(getAllActivities())
     }, [dispatch]);

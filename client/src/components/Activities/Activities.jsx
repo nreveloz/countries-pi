@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Nav from "../Nav/Nav";
 import style from "./ActivitiesForm.module.css";
 import {useDispatch, useSelector} from "react-redux";
-import {createActivity, getCountries} from "../../redux/actions";
+import {createActivity, getAllActivities, getCountries} from "../../redux/actions";
 
 
 function Activities() {
@@ -51,7 +51,6 @@ function Activities() {
     }
 
     const handleChange = (event) => {
-        console.log(event.target.value)
         setInput({
             ...input,
             [event.target.name]: event.target.value
@@ -66,14 +65,9 @@ function Activities() {
     const validate = (input) => {
         let errors ={};
         if ( input.name.length < 3) { errors.name = 'Requiere nombre con mas de 3 carácteres'};
-        console.log("error.name",errors.name)
         if (!input.duration) { errors.duration = 'Requiere asignar un tiempo'};
-        console.log("error.duration",errors.duration)
         if (!input.difficulty) { errors.difficulty = 'Requiere seleccionar un campo'};
-        console.log("error.difficulty",errors.difficulty)
         if (!input.season) { errors.season = 'Requiere seleccionar un campo'};
-        console.log("error.season",errors.season)
-        console.log( " errores validacion", errors);
         return errors;
     }
 

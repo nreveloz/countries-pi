@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {filterCountriesByActivity} from "../../redux/actions";
+import {filterCountriesByActivity, setDefaultPage} from "../../redux/actions";
 
 
 function FilterByActivity() {
@@ -11,8 +11,8 @@ function FilterByActivity() {
 
     const handleOrder = (event) => {
         dispatch(filterCountriesByActivity(event.target.value))
+        dispatch(setDefaultPage())
     }
-
 
     return(
         <div>

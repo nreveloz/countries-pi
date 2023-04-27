@@ -6,9 +6,7 @@ import {
     ORDER_BY_ALPHABET,
     ORDER_BY_POPULATION, GET_ALL_ACTIVITIES, FILTER_COUNTRIES_BY_ACTIVITY, SET_DEFAULT_PAGE,
 } from "./actions-types";
-import country from "../components/Countries/Country";
-import {filterCountriesByActivity} from "./actions";
-import countries from "../components/Countries/Countries";
+import activities from "../components/Activities/Activities";
 
 
 let initialState = {
@@ -16,7 +14,7 @@ let initialState = {
     allCountries: [],
     activities: [],
     errors: {},
-    currentPage: 1
+    currentPage: 1,
 }
 
 const reducer = (state = initialState, action) => {
@@ -30,17 +28,15 @@ const reducer = (state = initialState, action) => {
             }
 
         case GET_COUNTRIES_BY_SEARCH:
-            console.log("GET_COUNTRIES_BY_SEARCH: ", action)
             return {
                 ...state,
                 countries: action.payload,
             }
 
         case POST_ACTIVITIES:
-            console.log("POST_ACTIVITIES: ", action)
             return {
                 ...state,
-                activities: action.payload,
+                activities: [...state.activities, action.payload]
             }
 
         case FILTER_BY_CONTINENT:
@@ -99,7 +95,8 @@ const reducer = (state = initialState, action) => {
         case SET_DEFAULT_PAGE:
             return {
                 ...state,
-                currentPage: 1
+                currentPage: 1,
+                countries: [...state.countries]
             }
 
 

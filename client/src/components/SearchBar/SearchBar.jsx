@@ -16,7 +16,6 @@ function SearchBar() {
 
     const handleOnChange = (event) => {  // -> setea el string
         setInput(event.target.value);
-        console.log(event.target.value)
         event.preventDefault(); //-> evita refrescar la barra
     }
 
@@ -26,7 +25,6 @@ function SearchBar() {
     };
 
     const handleClearFilters = () => {
-        console.log("limpiando paises")
         dispatch(getCountries()).then((r) => console.log(r))
     };
 

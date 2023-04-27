@@ -21,10 +21,9 @@ countryRouter.get("/", async (req, res) => {
 
 
 // 📍 GET | /countries/:idPais
-// Esta ruta obtiene el detalle de un país específico. Es decir que devuelve un objeto con la información pedida en el detalle de un país.
-//     El país es recibido por parámetro (ID de tres letras del país).
+// Esta ruta obtiene el detalle de un país específico.
+// El país es recibido por parámetro (ID de tres letras del país).
 // Tiene que incluir los datos de las actividades turísticas asociadas a este país.
-
 
 countryRouter.get("/:countryId", async (req, res) =>{
     try {

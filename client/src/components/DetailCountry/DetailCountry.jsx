@@ -13,16 +13,14 @@ function DetailCountry() {
             fetch(`http://localhost:3001/countries/${id}`)
                 .then( (response) => response.json())
                 .then( (country) => {
-                    console.log("local server response on detail :", country)
                     if (country.name) {
                         setCountry(country);
                     } else {
                         window.alert("No hay países con ese ID");
                     }
                 })
-
                 .catch((err) => {
-                    console.log(err);
+                    console.log("",err);
                 })
         }
             , [id]);
@@ -49,7 +47,7 @@ function DetailCountry() {
                         </div>
                         <div>
                             <div className={style.activityDiv} >
-                                <h2>Actividades </h2>
+                                <h2> Actividades </h2>
                                 { country.Activities.map(activity =>
                                     <div key = {activity.id} className={style.infoActivitiesDiv}>
                                         <ul>

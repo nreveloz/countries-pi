@@ -10,6 +10,7 @@ function FilterByContinent() {
 
     const handleOrder = (event) => {
         dispatch(filterCountriesByContinent(event.target.value))
+        dispatch(setDefaultPage())
     }
 
 
