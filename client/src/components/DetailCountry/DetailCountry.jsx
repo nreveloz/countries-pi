@@ -13,7 +13,7 @@ function DetailCountry() {
             fetch(`http://localhost:3001/countries/${id}`)
                 .then( (response) => response.json())
                 .then( (country) => {
-                    if (country.name) {
+                    if (country) {        //--> si trae pais ? lo guarda en el estado pais
                         setCountry(country);
                     } else {
                         window.alert("No hay países con ese ID");
