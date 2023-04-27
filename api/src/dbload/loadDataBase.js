@@ -8,8 +8,8 @@ const { Country } = require("../db");
 const loadDataFromApi = () => {
     axios.get('https://restcountries.com/v3.1/all')
         .then(response => {
-            const mappedResult = response.data.map(mapCountryFromApi)
-            Country.bulkCreate(mappedResult)
+            const mappedResult = response.data.map(mapCountryFromApi) //--> mapeo la data a la estrutura que espera la DB
+            Country.bulkCreate(mappedResult) //--> metodo para insertar varios paises DB
                 .then(() => console.log("Database successfully loaded"))
                 .catch((err) => console.log("Error loading countries into database : ", err.message))
         })

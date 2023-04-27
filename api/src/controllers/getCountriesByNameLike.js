@@ -4,10 +4,10 @@ const { conn } = require('../db.js')
 
 const getCountriesByNameLike =  async ( name ) => {
         const countriesByNameLike = await conn.query(
-            'SELECT * FROM "Countries" WHERE name ILIKE :country_name',
+            'SELECT * FROM "Countries" WHERE name ILIKE :country_name', //-->ILIKE busca en DB ignora mayus y min
             {
                  replacements: { country_name: `%${name}%` },
-                type: QueryTypes.SELECT
+                 type: QueryTypes.SELECT
             }
         );
 

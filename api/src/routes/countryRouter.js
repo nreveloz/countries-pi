@@ -2,22 +2,8 @@ const { Router } = require('express');
 const getAllCountries = require('../controllers/getAllCountries');
 const getCountyDetailById = require('../controllers/getCountyDetailById');
 const getCountriesByNameLike = require('../controllers/getCountriesByNameLike');
-const { Activity, Country } = require("../db");
 
 const countryRouter = Router();
-
-// GET | /countries
-// Obtiene un arreglo de objetos, donde cada objeto es un país con toda su información.
-/*
-countryRouter.get("/", async (req, res) => {
-    try {
-        const countries = await getAllCountries();
-        res.status(200).json(countries);
-    }
-    catch (error) {
-        res.status(500).json({ err : error.message });
-    }
-});*/
 
 
 // 📍 GET | /countries/:idPais
