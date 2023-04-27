@@ -25,7 +25,6 @@ function Countries() {
         for (let i = 1; i <= Math.ceil(countries.length / countriesPerPage); i++) {
             pages.push(i);
         }
-        console.log("pages : ", pages)
     }
 
     useEffect(() => {

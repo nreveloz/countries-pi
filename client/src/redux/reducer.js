@@ -84,14 +84,16 @@ const reducer = (state = initialState, action) => {
                 activities: action.payload
             }
 
-        case FILTER_COUNTRIES_BY_ACTIVITY:
-            const filteredCountriesByActivity = state.allCountries.filter(country => country.Activities ?
-                country.Activities.find(activity => activity.id === Number(action.payload))
+        case FILTER_COUNTRIES_BY_ACTIVITY: //--> filtro de all countries los q tiene activity id
+            const filteredCountriesByActivity = state.allCountries.filter(
+                country => country.Activities ?  // valido si un pais tine actividades?
+                country.Activities.find(activity => activity.id === Number(action.payload)) //busco en el pais si hay alguna actividad con el id que busco
                 : false)
             return {
                 ...state,
                 countries: filteredCountriesByActivity
             }
+
         case SET_DEFAULT_PAGE:
             return {
                 ...state,

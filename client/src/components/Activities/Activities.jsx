@@ -28,14 +28,14 @@ function Activities() {
     })
 
     function onCountrySelect(event) {
-        const countryId = event.target.value
-        if (countryId && !input.selectedCountries.find(country => country.id === countryId)) {
-            const country = countries.find(country => country.id === countryId)
+        const countryId = event.target.value   //--> se compara si el id selecionado ya existe en selected Countries
+        if (countryId && !input.selectedCountries.find(country => country.id === countryId)) { //si existe no se agrega
+            const country = countries.find(country => country.id === countryId) //--> encontramos pais por id
             if (country) {
                 setInput({
                     ...input,
                     selectedCountries: [...input.selectedCountries, country]
-                })
+                }) //---> lo seteamos al selected countries
                 event.target.value = null
             }
         }

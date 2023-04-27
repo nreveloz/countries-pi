@@ -10,7 +10,7 @@ import {useHistory} from "react-router-dom"
 function SearchBar() {
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    const history = useHistory(); //--> me redirige a una ruta especifica que seleccione
 
     const [ input, setInput] = useState("");
 
@@ -25,30 +25,8 @@ function SearchBar() {
     };
 
     const handleClearFilters = () => {
-        dispatch(getCountries()).then((r) => console.log(r))
+        dispatch(getCountries())
     };
-
-    // function handleSubmit(){
-    //     const filtered = countries.filter( country => country.name.includes(input));
-    //     setFilteredCountry(filtered)
-    // }
-
-    // let results = [];
-    // if (!input){
-    //     results = countries
-    // }
-    // else {
-    //     countries.filter((country) => country.name.includes(input))
-    // }
-
-    //
-    // const handleSubmit = () => {
-    //     console.log("input :", input)
-    //    axios.get(`http://localhost:3001/countries/?name=${input}`)
-    //     .then(response => {
-    //         console.log("countries : ", response.data)
-    //     })
-    // }
 
 
     return (
